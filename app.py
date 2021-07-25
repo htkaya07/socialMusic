@@ -14,7 +14,7 @@ from sqlalchemy.exc import IntegrityError
 from forms import UserAddForm, LoginForm, MessageForm, UserUpdateForm
 from models import db, connect_db, User, Message
 
-from secret import API_BASE_URL, key, SECRET
+from secret import API_BASE_URL, SECRET
 
 ##################  APPLE MUSIC ITEMS ###########################################
 
