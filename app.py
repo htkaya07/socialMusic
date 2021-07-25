@@ -14,14 +14,14 @@ from sqlalchemy.exc import IntegrityError
 from forms import UserAddForm, LoginForm, MessageForm, UserUpdateForm
 from models import db, connect_db, User, Message
 
-from secret import API_BASE_URL, SECRET
+# from secret import API_BASE_URL, SECRET
 
 ##################  APPLE MUSIC ITEMS ###########################################
 
 
 
-# You should keep your API key a secret (I'm keeping it here so you can run this app)
 
+API_BASE_URL = "https://itunes.apple.com/search"
 
 
 #######################################################################################
@@ -39,7 +39,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = (
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', SECRET)
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'Projections')
 #toolbar = DebugToolbarExtension(app)
 
 connect_db(app)
