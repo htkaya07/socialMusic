@@ -1,0 +1,40 @@
+{% extends 'users/detail.html' %}
+{% block user_details %}
+  <div class="col-sm-9">
+    <div class="row">
+
+      {% for followed_user in user.following %}
+
+        <div class="col-lg-4 col-md-6 col-12">
+          <div class="card user-card">
+            <div class="card-inner">
+              <!-- <div class="image-wrapper">
+                <img src="{{ followed_user.header_image_url }}" alt="" class="card-hero">
+              </div> -->
+              <div class="card-contents">
+                <a href="/users/{{ followed_user.id }}" class="card-link">
+                  <img src="{{ followed_user.image_url }}" alt="Image for {{ followed_user.username }}" class="card-image">
+                  <p>@{{ followed_user.username }}</p>
+                </a>
+                {% if g.user.is_following(followed_user) %}
+                  <form method="POST"
+                        action="/users/stop-following/{{ followed_user.id }}">
+                    <button class="btn btn-primary btn-sm">Unfollow</button>
+                  </form>
+                {% else %}
+                  <form method="POST" action="/users/follow/{{ followed_user.id }}">
+                    <button class="btn btn-outline-primary btn-sm">Follow</button>
+                  </form>
+                {% endif %}
+
+              </div>
+              <p class="card-bio">{{followed_user.bio }}</p>
+            </div>
+          </div>
+        </div>
+
+      {% endfor %}
+
+    </div>
+  </div>
+{% endblock %}

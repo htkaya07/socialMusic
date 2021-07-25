@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>SocialMUSIC</title>
+
+  <link rel="stylesheet"
+        href="https://unpkg.com/bootstrap/dist/css/bootstrap.css">
+  <script src="https://unpkg.com/jquery"></script>
+  <script src="https://unpkg.com/popper"></script>
+  <script src="https://unpkg.com/bootstrap"></script>
+
+  <link rel="stylesheet"
+        href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+  <link rel="stylesheet" href="/static/stylesheets/style.css">
+  <link rel="shortcut icon" href="/static/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap" rel="stylesheet">
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
+</head>
+
+<body class="{% block body_class %}{% endblock %}">
+    
+
+
+
+    <nav class="navbar navbar-expand">
+        <div class="container-fluid">
+       
+          <div class="navbar-header">
+            <a href="/" class="navbar-brand">
+                <img src="/static/images/voice.png" alt="logo">
+                <h2 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: turquoise;">SocialMusic</h2>
+              
+              
+            </a>
+          </div>
+          <ul class="nav navbar-nav navbar-right">
+            {% if request.endpoint != None %}
+            <!-- <li>
+              <form class="navbar-form navbar-right" action="/users">
+                <input name="q" class="form-control" placeholder="Search user" id="search">
+                <button class="btn btn-default">
+                  <span class="fa fa-search"></span>
+                </button>
+              </form>
+            </li> -->
+            <!-- <li>
+                <form class="navbar-form navbar-right" action="/findSong">
+                  <input name="f" class="form-control" placeholder="Search Song" id="find">
+                  <button class="btn btn-default">
+                    <span class="fa fa-search"></span>
+                  </button>
+                </form>
+              </li> -->
+            {% endif %}
+            {% if not g.user %}
+            <li><a href="/signup" style="color:black">Sign up</a></li>
+            <li><a href="/login" style="color:black">Log in</a></li>
+            {% else %}
+            <li>
+                <form class="navbar-form navbar-right" action="/users">
+                  <input name="q" class="form-control" placeholder="Search user" id="search">
+                  <button class="btn btn-default">
+                    <span class="fa fa-search"></span>
+                  </button>
+                </form>
+              </li>
+            <!-- <li>
+                
+
+              <a href="/users/{{ g.user.id }}">
+                <img src="{{ g.user.image_url }}" alt="{{ g.user.username }}">
+              </a>
+            </li> -->
+           <li>
+            <a href="/messages/new" id="add-song">SHARE SONG</a>
+           </li>
+            <li><a href="/logout" style="color: black;">Log out</a></li>
+            
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+
+<div class="container">
+  {% for category, message in get_flashed_messages(with_categories=True) %}
+  <div class="alert alert-{{ category }}">{{ message }}</div>
+  {% endfor %}
+
+  {% block content %}
+  {% endblock %}
+
+</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+venv/
+.vscode/
+secret.py
+__pycache__/
+test_message_model.py
+test_message_views.py
+test_user_model.py
+test_user_views.py
+.DS_Store
+generator/

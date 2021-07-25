@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <!-- <div class="bg" style="
+  background-image: url('/static/images/Yellow.mp4');"
+></div> -->
+
+<!-- <div id="intro" class="bg">
+  <video style="min-width: 100%; min-height: 100%;" playsinline autoplay muted loop>
+    <source class="h-100" src="/static/images/Yellow.mp4" type="video/mp4" />
+  </video>
+</div> -->
+    
+  
+<!-- <div class="col-md-6"> -->
+  <div class="row justify-content-center " >
+    <!-- <div class="col-md-6"> -->
+      <div class="row d-flex justify-content-center">
+      <div class="col-md-6 col-md-9">
+      <div class="shadow-lg p-3 mb-5 bg-body rounded" >
+    <div class="bg" style="background-image: url('{{tracks['picture']}}'); background-size: cover;  filter: blur(16px);
+    -webkit-filter: blur(24px);" ></div>
+   
+      <ul class="list-group no-hover" id="messages">
+        
+        <li class="list-group-item">
+          <a href="{{ url_for('users_show', user_id=message.user.id) }}">
+            <img src="{{ message.user.image_url }}" alt="" class="timeline-image">
+          </a>
+      
+          <div class="message-area">
+            <div class="message-heading">
+              <a href="/users/{{ message.user.id }}">@{{ message.user.username }}</a>
+              {% if g.user %}
+
+
+             
+
+
+                {% if g.user.id == message.user.id %}
+                  <form method="POST"
+                        action="/messages/{{ message.id }}/delete">
+                    <button class="btn btn-outline-danger">Delete</button>
+                  </form>
+                {% elif g.user.is_following(message.user) %}
+                  <form method="POST"
+                        action="/users/stop-following/{{ message.user.id }}">
+                    <button class="btn btn-primary">Unfollow</button>
+                  </form>
+                {% else %}
+                  <form method="POST" action="/users/follow/{{ message.user.id }}">
+                    <button class="btn btn-outline-primary btn-sm">Follow</button>
+                  </form>
+                {% endif %}
+              {% endif %}
+            </div>
+             
+            <!-- <p class="single-message">{{ message.text }}</p> -->
+           
+            {% if tracks %}
+            
+            <ul>
+              <p class="single-message"> {{tracks['songName']}} |  {{tracks['singer']}}  </p>
+              
+              
+              <div class="autoloop">
+                
+
+                <!-- <div class="shadow-lg p-3 mb-5 bg-body rounded" > <img src="{{tracks['picture']}}" alt=""></div> -->
+                <img src="{{tracks['picture']}}"  class="shadow-lg "alt="">
+                
+            <audio src="{{tracks['single']}}" controls autoplay loop > 
+              <!-- <li>{{tracks['trackName']}}</li> -->
+              
+                
+              </div>
+             
+            {% endif  %}
+            <span class="text-muted">{{ message.timestamp.strftime('%d %B %Y') }}</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+<!-- </div> -->
+
+
+{% endblock %}
