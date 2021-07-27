@@ -15,7 +15,7 @@ First of all, everyone needs to sign up for the platform and afterwards they wil
 API USAGE
 Aplication will be using Apple Music track previews, Apple Music Album covers, artist name and track name. 
 
-TECHOLOGIES USED
+TECNOLOGIES USED
 Python 3.7.8
 Flask 2.0.1
 Jinja2 3.0.2
