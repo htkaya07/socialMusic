@@ -172,7 +172,7 @@ class User(db.Model):
 
 
 class Message(db.Model):
-    """An individual message ("warble")."""
+    """An individual message."""
 
     __tablename__ = 'messages'
 
